@@ -1,0 +1,112 @@
+<!--
+@license
+Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>App-login</title>
+    <script>
+      // Redux assumes `process.env.NODE_ENV` exists in the ES module build.
+      // https://github.com/reactjs/redux/issues/2907
+      window.process = { env: { NODE_ENV: 'production' } };
+    </script>
+
+    <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../node_modules/wct-browser-legacy/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <script type="module" src="../../src/components/new-declaration.js"></script>
+  </head>
+  <body>
+    <test-fixture id="newDeclaration">
+      <template>
+        <new-declaration active></new-declaration>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      import 'axe-core/axe.min.js';
+      import {axeReport} from 'pwa-helpers/axe-report.js';
+      import { defaults, defaultsSponq } from './mockData.js';
+      import { declarationModel } from '../../src/datamodel/declaration.js';
+      import { REQUEST_DEFAULTS, RECEIVE_DEFAULTS, RECEIVE_DEFAULTS_SPONQ } from '../../src/actions/defaults.js';
+      import { GET_DECLARATION } from '../../src/actions/declaration.js';
+      import { store } from '../../src/store.js';
+
+      suite('New declaration tests', function() {
+        let el;
+        setup(async function() {
+          el = await fixture('newDeclaration');
+        });
+
+        const declaration = new declarationModel();
+
+        store.dispatch({type: RECEIVE_DEFAULTS, defaults});
+        store.dispatch({type: RECEIVE_DEFAULTS_SPONQ, defaultsSponq});
+        store.dispatch({type: GET_DECLARATION, declaration});
+        
+        
+        test('Onchange event should update store with new Company Reference value', function() {
+          assert.equal(el.declaration.CompanyReference, String);
+
+          const inputs = el.shadowRoot.querySelectorAll('input');
+          inputs[0].value = '';
+          const event = new Event('change');
+          inputs[0].dispatchEvent(event);
+
+          assert.equal(el.declaration.CompanyReference, store.getState()['declaration']['CompanyReference']);
+        });
+
+        test('Button click should set Destination Country', function() {
+          if(window.navigator.userAgent.indexOf('Trident/7.0') > -1) {
+            assert.ok(true);
+          } else {
+            const form = el.shadowRoot.querySelectorAll('form');
+            const event = new Event('submit');
+            form[0].dispatchEvent(event);
+            
+            assert.equal(store.getState()['declaration']['GoodsShipment']['Consignee']['Address']['Country'], store.getState()['declaration']['GoodsShipment']['DeliveryDestinationCountry']);
+          }
+        });
+
+        test('Button click should set total colli amount', function() {
+          if(window.navigator.userAgent.indexOf('Trident/7.0') > -1) {
+            assert.ok(true);
+          } else {
+            const form = el.shadowRoot.querySelectorAll('form');
+            const event = new Event('submit');
+            form[0].dispatchEvent(event);
+            
+            assert.equal(store.getState()['declaration']['GoodsShipment']['TotalColli'], 1);
+          }
+        });
+
+        test('Button click should set declaration status to submitted', function() {
+          if(window.navigator.userAgent.indexOf('Trident/7.0') > -1) {
+            assert.ok(true);
+          } else {
+            const form = el.shadowRoot.querySelectorAll('form');
+            const event = new Event('submit');
+            form[0].dispatchEvent(event);
+            
+            assert.ok(store.getState()['declaration']['submitted']);
+          }
+        });
+
+        test('a11y', function() {
+          return axeReport(el);
+        });
+      });
+    </script>
+  </body>
+</html>

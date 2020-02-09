@@ -1,0 +1,74 @@
+{
+  "/": {
+    "./src/components/xborder-app.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/app-login.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
+  "/dashboard": {
+    "./src/components/xborder-app.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/dashboard.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
+  "/declaration": {
+    "./src/components/xborder-app.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/new-declaration.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/declaration/address-item.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/declaration/consignee-item.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/declaration/gagitems-item.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/declaration/packages-item.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
+  "/declaration-cleared": {
+    "./src/components/xborder-app.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./src/components/declaration-cleared.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  }
+}

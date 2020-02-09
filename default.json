@@ -1,0 +1,35 @@
+{
+  "OfficeOfDeclaration": "0144",
+  "Company": "Self",
+  "NatureOfTransaction": "1",
+  "GoodsLocations": [
+    { "ExternalId": "Provincialeweg", "Name": "5503 HB 47" },
+    { "ExternalId": "7575DA30", "Name": "7575DA30" },
+    { "ExternalId": "NCTSBTO2", "Name": "NCTS BTO IN" }
+  ],
+  "FreightTransportPaymentMethod": "H",
+  "Commodities": [{ "ExternalId": "48211EXP", "Name": "48211010" }],
+  "PackageTypes": [
+    { "Value": "CT", "Name": "Kartonnen doos" },
+    { "Value": "CS", "Name": "Doos (Case)" }
+  ],
+  "DestinationCountries": [
+    { "ShortCode": "NL", "Name": "Nederland" },
+    { "ShortCode": "DE", "Name": "Duitsland" },
+    { "ShortCode": "BE", "Name": "België" }
+  ],
+  "Currencies": [
+    { "ExternalId": "AUD", "Name": "AUSTRALIE - DOLLAR" },
+    { "ExternalId": "EUR", "Name": "EU-EUR" },
+    { "ExternalId": "USD", "Name": "U.S.A. - DOLLAR" }
+  ],
+  "DocumentTypes": [
+    { "ShortCode": "0005", "Name": "Vervoersdocument" },
+    {
+      "ShortCode": "A001",
+      "Name": "ECHTHEIDSCERTIFICAAT EMPEREUR TAFELDRUIVEN"
+    },
+    { "ShortCode": "A004", "Name": "ECHTHEIDSCERTIFICAAT TABAK" }
+  ],
+  "SchemaNameUsed": "AGS_Export_External_Api_v20"
+}
